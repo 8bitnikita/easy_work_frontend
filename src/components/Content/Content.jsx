@@ -5,7 +5,7 @@ import axios from "axios";
 import { getVacancies } from "../../redux/reducers/vacanciesSlice";
 
 import styles from "./Content.module.scss";
-import bell from "./bell.wav";
+import bell from "../../assets/bell.wav";
 
 const Content = () => {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const Content = () => {
     setInterval(() => {
       fetchVacancies();
       console.log("Server Request");
-    }, 5000);
+    }, 60000);
   }, []);
 
   const playNewVacancySound = () => {
@@ -41,7 +41,9 @@ const Content = () => {
         <div className={styles.item__title}>
           <div>
             <h2>
-              <a href={item.url}>{item.title}</a>
+              <a rel="noreferrer" target="_blank" href={item.url}>
+                {item.title}
+              </a>
             </h2>
           </div>
           <span>{item.date}</span>
