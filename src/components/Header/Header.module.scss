@@ -1,0 +1,53 @@
+.wrapper {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(35, 148, 201);
+  padding: 0 15px;
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    &__text {
+      color: rgb(255, 255, 255);
+      font-size: 24px;
+    }
+
+    &__img {
+      width: 90px;
+      height: 80px;
+    }
+  }
+
+  .auth {
+    button {
+      width: 80px;
+      height: 40px;
+      font-size: 16px;
+      border-radius: 7px;
+    }
+
+    &__login {
+      margin-right: 5px;
+      background-color: rgb(255, 255, 255);
+      border: 1px solid #fff;
+    }
+    &__login:hover {
+      background-color: rgb(42, 149, 211);
+      color: #fff;
+    }
+
+    &__signup {
+      color: #fff;
+      margin-left: 5px;
+      background-color: rgb(42, 149, 211);
+      border: 1px solid #fff;
+    }
+    &__signup:hover {
+      color: #000;
+      border: 1px solid rgb(0, 0, 0);
+    }
+  }
+}
