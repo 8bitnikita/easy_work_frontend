@@ -14,7 +14,7 @@ const Header = () => {
       <div className={styles.header}>
         <div className={styles.logo}>
           <div className={styles.logo__text}>
-            <span>E</span>ASY <span>W</span>ORK
+            <span>e</span>asy<span>w</span>ork
           </div>
           <div className={styles.tagline}>i will find your work!</div>
         </div>
