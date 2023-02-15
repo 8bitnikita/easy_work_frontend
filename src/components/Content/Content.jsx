@@ -1,21 +1,29 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getVacancies } from "../../redux/reducers/vacanciesSlice";
 
-import styles from "./Content.module.scss";
 import bell from "../../assets/bell.wav";
+import styles from "./Content.module.scss";
 
 const Content = () => {
   const dispatch = useDispatch();
   const vacancies = useSelector((state) => state.vacancies.vacancies);
   const bellSound = new Audio(bell);
+  const [error, setError] = useState(false);
 
   async function fetchVacancies() {
-    const response = await axios.get("http://127.0.0.1:8000/api/v1/vacancies/");
-    const data = await response.data;
-    dispatch(getVacancies(data));
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/api/v1/vacancies/"
+      );
+      const data = await response.data;
+      setError(false);
+      dispatch(getVacancies(data));
+    } catch (error) {
+      setError(true);
+    }
   }
 
   useEffect(() => {
@@ -53,7 +61,15 @@ const Content = () => {
     );
   });
 
-  return <div className={styles.wrapper}>{allVacancies.reverse()}</div>;
+  const getError = () => (
+    <div className={styles.error}>The server is not responding!</div>
+  );
+
+  return (
+    <div className={styles.wrapper}>
+      {error ? getError() : allVacancies.reverse()}
+    </div>
+  );
 };
 
 export default Content;

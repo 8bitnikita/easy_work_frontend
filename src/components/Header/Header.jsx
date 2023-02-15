@@ -16,9 +16,15 @@ const Header = () => {
           <div className={styles.logo__text}>
             <span>e</span>asy<span>w</span>ork
           </div>
+
           <div className={styles.tagline}>i will find your work!</div>
         </div>
         <div className={styles.auth}>
+          <FontAwesomeIcon
+            className={styles.auth__bell}
+            icon={icon({ name: "info", style: "solid" })}
+          />
+
           <span onClick={soundNotification}>
             {notification ? (
               <FontAwesomeIcon
