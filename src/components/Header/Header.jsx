@@ -1,14 +1,42 @@
 import { useState } from "react";
 import styles from "./Header.module.scss";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { icon } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
+import { useTheme } from "../../hooks/useTheme";
 
 const Header = () => {
-  const [notification, setNotification] = useState(false);
-  const soundNotification = () => {
-    setNotification(!notification);
+  const [bellNotification, setBellNotification] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  const handleLightTheme = () => {
+    setTheme("light");
   };
+  const handleDarkTheme = () => {
+    setTheme("dark");
+  };
+
+  const soundNotification = () => {
+    setBellNotification(!bellNotification);
+  };
+
+  const customClassName = (selectedTheme) => {
+    if (theme === selectedTheme) {
+      return (
+        styles.auth__theme_btn +
+        " " +
+        styles.auth__theme_active +
+        " " +
+        styles.auth__btn +
+        " material-symbols-outlined"
+      );
+    } else {
+      return (
+        styles.auth__theme_btn +
+        " " +
+        styles.auth__btn +
+        " material-symbols-outlined"
+      );
+    }
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
@@ -20,28 +48,61 @@ const Header = () => {
           <div className={styles.tagline}>i will find your work!</div>
         </div>
         <div className={styles.auth}>
-          <FontAwesomeIcon
-            className={styles.auth__bell}
-            icon={icon({ name: "info", style: "solid" })}
-          />
-
-          <span onClick={soundNotification}>
-            {notification ? (
-              <FontAwesomeIcon
-                className={styles.auth__bell_on}
-                icon={icon({ name: "bell", style: "solid" })}
-              />
-            ) : (
-              <FontAwesomeIcon
-                className={styles.auth__bell}
-                icon={icon({ name: "bell", style: "regular" })}
-              />
-            )}
-          </span>
-          <FontAwesomeIcon
-            className={styles.auth__user}
-            icon={icon({ name: "user", style: "regular" })}
-          />
+          <div className={styles.auth__theme}>
+            <div className={styles.switchWrapper}>
+              <div className={styles.switch}>
+                <span
+                  onClick={handleLightTheme}
+                  className={customClassName("light")}
+                >
+                  brightness_medium
+                </span>
+                <span
+                  onClick={handleDarkTheme}
+                  className={customClassName("dark")}
+                >
+                  nightlight
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className={styles.auth__btnWrapper}>
+            <span onClick={soundNotification}>
+              {bellNotification ? (
+                <span
+                  className={
+                    styles.auth__bell_on +
+                    " " +
+                    styles.auth__btn +
+                    " material-symbols-outlined"
+                  }
+                >
+                  notifications
+                </span>
+              ) : (
+                <span
+                  className={
+                    styles.auth__bell +
+                    " " +
+                    styles.auth__btn +
+                    " material-symbols-outlined"
+                  }
+                >
+                  notifications
+                </span>
+              )}
+            </span>
+            <span
+              className={
+                styles.auth__user +
+                " " +
+                styles.auth__btn +
+                " material-symbols-outlined"
+              }
+            >
+              location_away
+            </span>
+          </div>
         </div>
       </div>
     </div>

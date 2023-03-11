@@ -7,10 +7,9 @@
   margin: 0 15px;
 
   .item {
-    // background-color: #2c2e31;
-    border-bottom: 2px solid #2c2e31;
-    border-left: 1px solid #2c2e31;
-    color: #646669;
+    border-bottom: 2px solid var(--header-color);
+    border-left: 1px solid var(--header-color);
+    color: var(--main-color);
     max-width: 1100px;
     width: 100%;
     border-radius: 15px;
@@ -29,17 +28,17 @@
 
       a {
         text-decoration: none;
-        color: #e2b712;
-        transition: color 0.2s;
+        color: var(--link-color);
+        transition: color 0.3s;
 
         &:hover {
-          color: #d1d0c5;
+          color: var(--hover-color);
         }
         &:active {
-          color: #646669;
+          color: var(--main-color);
         }
         &:visited {
-          color: #646669;
+          color: var(--visited-link-color);
         }
       }
 
@@ -56,7 +55,7 @@
   }
 
   .error {
-    color: #ff6262;
+    color: var(--error-color);
     font-size: 28px;
     margin-top: 25px;
   }

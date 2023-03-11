@@ -1,8 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Courgette&family=Luckiest+Guy&family=Oleo+Script&family=Varela+Round&display=swap");
-
 .wrapper {
-  background-color: #2c2e31;
+  background: var(--header-color);
   padding: 0 15px;
+  transition: background 0.3s;
 
   .header {
     max-width: 1400px;
@@ -19,12 +18,13 @@
 
     &__text {
       font-family: "Oleo Script", cursive;
-      // font-family: "Varela Round", sans-serif;
-      color: #d1d0c5;
+      color: var(--hover-color);
       font-size: 42px;
+      transition: color 0.5s;
 
       span {
-        color: #e2b712;
+        color: var(--link-color);
+        transition: color 0.5s;
       }
     }
 
@@ -36,48 +36,80 @@
 
   .tagline {
     margin-left: 25px;
-    color: #646669;
+    color: var(--main-color);
     font-size: 18px;
     letter-spacing: 3px;
+    transition: color 0.3s;
   }
 
   .auth {
-    color: #646669;
+    display: flex;
+    color: var(--main-color);
+    transition: color 0.3s;
 
-    &__bell {
-      width: 20px;
-      height: 20px;
-      margin-right: 10px;
+    &__btn {
+      font-size: 28px;
       cursor: pointer;
       transition: color 0.3s;
 
       &:hover {
-        color: #d1d0c5;
+        color: var(--hover-color);
       }
       &:active {
-        color: #646669;
+        color: var(--main-color);
       }
     }
-    &__bell_on {
-      color: #e2b712;
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
+
+    &__theme_btn {
+      color: var(--visited-link-color);
+      font-size: 20px;
+      padding: 9px;
+    }
+
+    &__theme_active {
+      color: var(--link-color);
+    }
+
+    &__bell {
+      font-size: 28px;
       margin-right: 10px;
+      transition: color 0.3s;
+    }
+    &__bell_on {
+      color: var(--link-color);
+      margin-right: 10px;
+      transition: color 0.5s;
     }
 
     &__user {
       width: 20px;
       height: 20px;
       margin-left: 10px;
-      cursor: pointer;
       transition: color 0.3s;
 
       &:hover {
-        color: #d1d0c5;
+        color: var(--hover-color);
+        transition: color 0.5s;
       }
       &:active {
-        color: #646669;
+        color: var(--main-color);
+        transition: color 0.5s;
+      }
+    }
+
+    .switchWrapper {
+      display: inline-block;
+      margin-right: 15px;
+
+      .switch {
+        width: 80px;
+        height: 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid var(--switch-border-color);
+        border-radius: 15px;
+        transition: border 0.3s;
       }
     }
   }

@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Courgette&family=Luckiest+Guy&family=Oleo+Script&family=Varela+Round&display=swap");
+
+html[data-theme="light"] {
+  --background-color: #ffffff;
+  --main-color: #4a4a4a;
+  --hover-color: #333333;
+  --header-color: #f8f8f8;
+  --switch-border-color: #d3d3d3;
+  --link-color: #0b66c2;
+  --visited-link-color: #c6c6c6;
+  --error-color: #ff6262;
+}
+
+html[data-theme="dark"] {
+  --background-color: #323437;
+  --main-color: #646669;
+  --hover-color: #d1d0c5;
+  --header-color: #2c2e31;
+  --switch-border-color: #202226;
+  --link-color: #e2b712;
+  --visited-link-color: #646669;
+  --error-color: #ff6262;
+}
+
+body {
+  background: var(--background-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Varela Round", "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  margin: 0;
+  transition: color 0.3s;
+}

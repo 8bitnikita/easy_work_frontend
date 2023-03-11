@@ -30,7 +30,7 @@ const Content = () => {
     fetchVacancies();
     playNewVacancySound();
     console.log("Get New Vacancies");
-  }, [vacancies.length]);
+  }, [vacancies.length, error]);
 
   useEffect(() => {
     setInterval(() => {
