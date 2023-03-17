@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -7,36 +6,32 @@ import { getVacancies } from "../../redux/reducers/vacanciesSlice";
 import bell from "../../assets/bell.wav";
 import styles from "./Content.module.scss";
 
-const Content = () => {
-  const dispatch = useDispatch();
-  const vacancies = useSelector((state) => state.vacancies.vacancies);
-  const bellSound = new Audio(bell);
+const Content2 = () => {
   const [error, setError] = useState(false);
 
-  async function fetchVacancies() {
-    try {
-      const response = await axios.get(
-        "http://127.0.0.1:8000/api/v1/vacancies/"
+  const dispatch = useDispatch();
+  const vacancies = useSelector((state) => state.vacancies.vacancies);
+
+  const bellSound = new Audio(bell);
+  const socket = new WebSocket("ws://localhost:8000/");
+
+  const currentDate = new Date();
+
+  useEffect(() => {
+    socket.onmessage = (event) => {
+      const newVacancies = JSON.parse(event.data);
+      dispatch(getVacancies(newVacancies));
+
+      playNewVacancySound();
+
+      console.log(
+        `Got new vacancies: ${currentDate.getHours()}:${currentDate.getMinutes()}`
       );
-      const data = await response.data;
-      setError(false);
-      dispatch(getVacancies(data));
-    } catch (error) {
+    };
+
+    socket.onclose = () => {
       setError(true);
-    }
-  }
-
-  useEffect(() => {
-    fetchVacancies();
-    playNewVacancySound();
-    console.log("Get New Vacancies");
-  }, [vacancies.length, error]);
-
-  useEffect(() => {
-    setInterval(() => {
-      fetchVacancies();
-      console.log("Server Request");
-    }, 60000);
+    };
   }, []);
 
   const playNewVacancySound = () => {
@@ -45,7 +40,10 @@ const Content = () => {
 
   const allVacancies = vacancies.map((item) => {
     return (
-      <div key={item.id} className={styles.item}>
+      <div
+        key={(Math.random() + 1).toString(36).substring(7)}
+        className={styles.item}
+      >
         <div className={styles.item__title}>
           <div>
             <h2>
@@ -66,10 +64,8 @@ const Content = () => {
   );
 
   return (
-    <div className={styles.wrapper}>
-      {error ? getError() : allVacancies.reverse()}
-    </div>
+    <div className={styles.wrapper}>{error ? getError() : allVacancies}</div>
   );
 };
 
-export default Content;
+export default Content2;

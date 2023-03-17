@@ -1,41 +1,41 @@
-import { useState } from "react";
-import styles from "./Header.module.scss";
-import { useTheme } from "../../hooks/useTheme";
+import { useState } from 'react'
+import { useTheme } from '../../hooks/useTheme'
+import styles from './Header.module.scss'
 
 const Header = () => {
-  const [bellNotification, setBellNotification] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [bellNotification, setBellNotification] = useState(false)
+  const { theme, setTheme } = useTheme()
 
   const handleLightTheme = () => {
-    setTheme("light");
-  };
+    setTheme('light')
+  }
   const handleDarkTheme = () => {
-    setTheme("dark");
-  };
+    setTheme('dark')
+  }
 
   const soundNotification = () => {
-    setBellNotification(!bellNotification);
-  };
+    setBellNotification(!bellNotification)
+  }
 
   const customClassName = (selectedTheme) => {
     if (theme === selectedTheme) {
       return (
         styles.auth__theme_btn +
-        " " +
+        ' ' +
         styles.auth__theme_active +
-        " " +
+        ' ' +
         styles.auth__btn +
-        " material-symbols-outlined"
-      );
+        ' material-symbols-outlined'
+      )
     } else {
       return (
         styles.auth__theme_btn +
-        " " +
+        ' ' +
         styles.auth__btn +
-        " material-symbols-outlined"
-      );
+        ' material-symbols-outlined'
+      )
     }
-  };
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -53,14 +53,12 @@ const Header = () => {
               <div className={styles.switch}>
                 <span
                   onClick={handleLightTheme}
-                  className={customClassName("light")}
-                >
+                  className={customClassName('light')}>
                   brightness_medium
                 </span>
                 <span
                   onClick={handleDarkTheme}
-                  className={customClassName("dark")}
-                >
+                  className={customClassName('dark')}>
                   nightlight
                 </span>
               </div>
@@ -72,22 +70,20 @@ const Header = () => {
                 <span
                   className={
                     styles.auth__bell_on +
-                    " " +
+                    ' ' +
                     styles.auth__btn +
-                    " material-symbols-outlined"
-                  }
-                >
+                    ' material-symbols-outlined'
+                  }>
                   notifications
                 </span>
               ) : (
                 <span
                   className={
                     styles.auth__bell +
-                    " " +
+                    ' ' +
                     styles.auth__btn +
-                    " material-symbols-outlined"
-                  }
-                >
+                    ' material-symbols-outlined'
+                  }>
                   notifications
                 </span>
               )}
@@ -95,18 +91,17 @@ const Header = () => {
             <span
               className={
                 styles.auth__user +
-                " " +
+                ' ' +
                 styles.auth__btn +
-                " material-symbols-outlined"
-              }
-            >
+                ' material-symbols-outlined'
+              }>
               location_away
             </span>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

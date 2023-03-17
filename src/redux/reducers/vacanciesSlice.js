@@ -9,7 +9,7 @@ const vacanciesSlice = createSlice({
   initialState,
   reducers: {
     getVacancies(state, action) {
-      state.vacancies = action.payload;
+      state.vacancies = [...action.payload, ...state.vacancies];
     },
   },
 });
