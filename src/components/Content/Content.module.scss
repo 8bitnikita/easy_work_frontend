@@ -53,10 +53,12 @@
       font-size: 1.2em;
     }
   }
+}
 
-  .error {
-    color: var(--error-color);
-    font-size: 28px;
-    margin-top: 25px;
-  }
+.error {
+  display: flex;
+  justify-content: center;
+  color: var(--error-color);
+  font-size: 28px;
+  margin-top: 25px;
 }
